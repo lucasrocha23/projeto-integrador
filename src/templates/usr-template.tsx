@@ -2,7 +2,7 @@ import { Footer } from "../components/footer";
 import { Header } from "../components/header";
 
 type UsrtemplateProps = {
-    children: React.ReactElement[];
+    children: React.ReactElement | React.ReactElement[];
 }
 
 export function Usrtemplate(props: UsrtemplateProps){
