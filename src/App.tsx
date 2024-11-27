@@ -1,8 +1,8 @@
 import { createBrowserRouter,RouterProvider } from "react-router-dom"
 import { Home } from "./paginas/home";
-import { ListaProdutos } from "./paginas/lista-produtos";
+import { ListaProdutosRecentes } from "./paginas/produtos-recentes";
 import { Detalhes } from "./paginas/detalhes";
-import { ResultadoPesquisa } from "./paginas/resultado-pesquisa";
+import { ResultadoPesquisa } from "./paginas/pesquisa";
 import { NaoEncontrada } from "./paginas/nao-encontrada";
 import { QuemSomos } from "./paginas/quemSomos";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
@@ -12,6 +12,8 @@ import { Dashboard } from "./paginas/dashboard";
 import { UsrAnuncios } from "./paginas/usr-anuncios";
 import { FormProduto } from "./paginas/from-produto";
 import { FaleConosco } from "./paginas/fale-conosco";
+import { ListaTodosProdutos } from "./paginas/todos-os-produtos";
+import { TesteLoading } from "./paginas/teste-loading";
 
 const router = createBrowserRouter([
   {
@@ -19,15 +21,19 @@ const router = createBrowserRouter([
     element: <Home/>,
   },
   {
-    path: '/produtos',
-    element: <ListaProdutos/>,
+    path: '/produtos-recentes',
+    element: <ListaProdutosRecentes/>,
   },
   {
-    path: '/detalhes',
+    path: '/todos-os-produtos',
+    element: <ListaTodosProdutos/>,
+  },
+  {
+    path: '/detalhes/:id',
     element: <Detalhes/>
   },
   {
-    path: '/resultado',
+    path: '/pesquisa/:produto',
     element: <ResultadoPesquisa/>
   },
   {
