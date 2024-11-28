@@ -3,7 +3,11 @@ import * as Yup from "yup"
 
 import { AuthTemplate } from "../templates/auth-template";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type LoginForm = {
     email: string,
@@ -24,11 +28,20 @@ export function Login(){
         formState: {errors}
     } = useForm<LoginForm>({resolver:yupResolver(schemaValidation)})
 
+    const {msg} = useParams()
+
+    useEffect(() =>{
+        if (msg === "conta-criada"){
+            toast("Conta criada com sucesso", {type:"success"})
+        }
+    },[msg])
+
     function logar(dados: LoginForm){
         console.log(dados);
     }
     return(
         <AuthTemplate>
+            <ToastContainer/>
             <form onSubmit={handleSubmit(logar)} className="flex flex-col p-16 shadow-md rounded-xl w-[500px] gap-5">
                 <h1 className="text-primary text-[30px] font-bold text-center">Unybay</h1>
                 <p className="text-center">Acesse sua conta</p>
@@ -49,7 +62,11 @@ export function Login(){
 
                 <button type="submit" className="bg-primary text-white w-full rounded-md h-[40px] mt-8">Entrar</button>
 
-                <Link to={'/registrar'} className="text-center">Não possui uma conta? Cadastre-se</Link>
+                <p>
+                Não possui uma conta? {" "}
+                <Link to={'/registrar'} className="text-center text-primary">Cadastre-se</Link>
+                </p>
+                
             </form>
         </AuthTemplate>
     )

@@ -3,6 +3,12 @@ import { AuthTemplate } from "../templates/auth-template";
 import * as y from "yup" 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { api } from "../services/api";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Axios, AxiosError } from "axios";
 
 type CadastroForm = {
     nome: string,
@@ -14,9 +20,15 @@ type CadastroForm = {
     confirmarSenha: string
 }
 
+interface ApiError {
+    message: string; 
+}
+
 export function Registro(){
     const [telefone,setTelefone] = useState("")
     const [telefoneFormatado, setTelefoneFormatado] = useState("")
+
+    const navigate = useNavigate()
 
     const schemaValidacao =  y.object().shape(
         {
@@ -60,12 +72,32 @@ export function Registro(){
     },[telefone])
 
 
-    function cadastrar(dados: CadastroForm){
-        console.log(dados);   
+    async function cadastrar(dados: CadastroForm){
+        try {
+            const response = await api.post('/register',
+                {
+                    name: dados.nome,
+                    email: dados.email,
+                    phone: dados.telefone,
+                    city: dados.cidade,
+                    state: dados.cidade,
+                    password: dados.senha
+                }
+            )
+            
+            navigate('/login/conta-criada')
+        } catch (error) {
+            const erro = error as AxiosError<ApiError>
+
+            toast(`Falha ao cadastrar usuário. Erro: ${erro.response?.data?.message}`, {type: 'error', autoClose:7000})
+        } 
+
+
     }
 
     return(
         <AuthTemplate>
+            <ToastContainer/>
             <div>
                 <form onSubmit={handleSubmit(cadastrar)} className="flex flex-col p-16 shadow-md rounded-xl w-[500px] gap-5">
                 <h1 className="text-primary text-[30px] font-bold text-center">Unybay</h1>
@@ -121,6 +153,11 @@ export function Registro(){
                 </div>
 
                 <button type="submit" className="bg-primary text-white w-full rounded-md h-[40px] mt-8">Cadastrar</button>
+
+                <p>
+                Já possui uma conta? Faça o {" "}
+                <Link to={'/login'} className="text-center text-primary">login</Link>
+                </p>
                 </form>
                 
             </div>
