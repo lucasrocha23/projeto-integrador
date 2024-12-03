@@ -8,12 +8,10 @@ import { QuemSomos } from "./paginas/quemSomos";
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Login } from "./paginas/login";
 import { Registro } from "./paginas/registro";
-import { Dashboard } from "./paginas/dashboard";
 import { UsrAnuncios } from "./paginas/usr-anuncios";
 import { FormProduto } from "./paginas/from-produto";
 import { FaleConosco } from "./paginas/fale-conosco";
 import { ListaTodosProdutos } from "./paginas/todos-os-produtos";
-import { TesteLoading } from "./paginas/teste-loading";
 import { FormEditarProduto } from "./paginas/form-editar-produto";
 import { ResultadosCategoria } from "./paginas/resultados-categoria";
 
