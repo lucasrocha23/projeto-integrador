@@ -8,7 +8,7 @@ import { api } from "../services/api";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Axios, AxiosError } from "axios";
+import { AxiosError } from "axios";
 
 type CadastroForm = {
     nome: string,
@@ -74,7 +74,7 @@ export function Registro(){
 
     async function cadastrar(dados: CadastroForm){
         try {
-            const response = await api.post('/register',
+            await api.post('/register',
                 {
                     name: dados.nome,
                     email: dados.email,

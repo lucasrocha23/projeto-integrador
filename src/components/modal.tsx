@@ -6,7 +6,6 @@ interface ModalProps {
     setVisivel:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
-
 function Modal({children, visivel, setVisivel}: ModalProps){
     const tipo = () => visivel? {display: 'flex'} : {display: 'none'}
 

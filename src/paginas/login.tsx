@@ -41,7 +41,7 @@ export function Login(){
         formState: {errors}
     } = useForm<LoginForm>({resolver:yupResolver(schemaValidation)})
 
-    const {setName,setToken,setEmail,token} = useAuth()
+    const {setName,setToken,setEmail} = useAuth()
     const {msg} = useParams()
 
     const navigate = useNavigate()

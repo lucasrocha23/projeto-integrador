@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Template } from "../templates/template";
 import { CardProdutoAdm } from "../components/card-produto-adm";
 import { useEffect, useState } from "react";
-import Modal from "../components/modal";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
 import { ToastContainer, toast } from 'react-toastify';

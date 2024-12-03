@@ -28,7 +28,7 @@ export function CardProdutoAdm(props: CardProps){
     
     async function apagarProduto(){
         try {
-            const response = await api.delete(`/products/${props.id}`,{headers: {Authorization: token}})
+            await api.delete(`/products/${props.id}`,{headers: {Authorization: token}})
 
         } catch (error) {
             const erro = error as AxiosError<ApiError>

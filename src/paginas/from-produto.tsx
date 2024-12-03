@@ -33,7 +33,7 @@ export function FormProduto(){
         nomeProduto: y.string().required("Campo obrigatório"),
         fabricante: y.string().required("Campo obrigatório"),
         categoria: y.string().required("Campo obrigatório"),
-        preco: y.string().required("Campo obrigatório"),
+        preco: y.number().required("Campo obrigatório"),
         img1: y.string().required("Campo obrigatório"),
         img2: y.string().required("Campo obrigatório")
     })

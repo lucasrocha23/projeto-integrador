@@ -86,7 +86,7 @@ export function ResultadoPesquisa(){
 
             <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-5">
                 {loadingPesquisa && <Loading/>}
-                {resultado.map((item, index) => (
+                {resultado.map((item) => (
                     <CardProduto id={item._id} nome={item.name} marca={item.manufacturer} img={item.url1} preco={item.price} key={`${item.name}_${item._id}`}/>
                 ))
                 }

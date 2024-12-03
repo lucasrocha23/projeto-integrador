@@ -84,7 +84,7 @@ export function ListaTodosProdutos(){
             
             <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-5">
                 {loadingTodosProdutos && <Loading/>}
-                {todosProdutos.map((item, index) => (
+                {todosProdutos.map((item) => (
                     <CardProduto id={item._id} nome={item.name} preco={item.price} img={item.url1} marca={item.manufacturer} key={item._id}/>
                 ))}
             </div>

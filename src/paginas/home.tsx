@@ -17,7 +17,6 @@ import { Loading } from "../components/loading";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from "../hooks/useAuth";
 import { Template } from "../templates/template";
 
 const categItens = [
@@ -82,9 +81,6 @@ export function Home(){
 
     const [pesquisa,setPesquisa] = useState('')
 
-    const {token} = useAuth()
-    const navigate = useNavigate()
-
     async function getProdutosRecentes(){
         setLoadingItensRecentes(true)
         try {
@@ -142,7 +138,7 @@ export function Home(){
             <h2 className="mt-16">Itens recentes</h2>
             <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-5 mb-5">
                 {loadingItensRecentes && <Loading/>}
-                {itensRecentes.map((item, index) => (
+                {itensRecentes.map((item) => (
                     <CardProduto id={item._id} nome={item.name} marca={item.manufacturer} img={item.url1} preco={item.price} key={`${item.name}_${item._id}`}/>
                 ))
                 }
@@ -169,7 +165,7 @@ export function Home(){
             <h2 className="mt-16">Anúncios</h2>
             <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-x-10 gap-y-8 mt-5 mb-5">
                 {loadingItensRecomendados && <Loading/>}
-                {itensRecomendados.map((item, index) => (
+                {itensRecomendados.map((item) => (
                     <CardProduto id={item._id} nome={item.name} preco={item.price} img={item.url1} marca={item.manufacturer} key={item._id}/>
                 ))}
             </div>
