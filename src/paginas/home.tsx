@@ -6,16 +6,20 @@ import { IoFastFoodOutline, IoSearch } from "react-icons/io5";
 import { GrGift } from "react-icons/gr";
 import { BsThreeDots } from "react-icons/bs";
 import { Carousel } from "react-responsive-carousel";
+// @ts-ignore
 import banner1 from '../assets/banner1.jpg'
+// @ts-ignore
 import banner2 from '../assets/banner2.jpg'
+// @ts-ignore
 import banner3 from '../assets/banner3.jpg'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { api } from "../services/api";
 import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 import { Loading } from "../components/loading";
 
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { Template } from "../templates/template";
 

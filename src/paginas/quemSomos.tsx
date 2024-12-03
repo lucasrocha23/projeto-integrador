@@ -1,4 +1,6 @@
+// @ts-ignore
 import missao from "../assets/missão.jpg"
+// @ts-ignore
 import historia from "../assets/história.jpg"
 import { Template } from "../templates/template"
 

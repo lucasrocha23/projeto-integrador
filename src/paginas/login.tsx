@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from "../services/api";
 import { AxiosError } from "axios";

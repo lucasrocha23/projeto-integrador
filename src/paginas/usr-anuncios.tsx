@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { AxiosError } from "axios";
 import { Loading } from "../components/loading";

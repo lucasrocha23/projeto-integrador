@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { Template } from "../templates/template";
 

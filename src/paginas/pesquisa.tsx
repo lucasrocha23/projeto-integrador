@@ -6,6 +6,7 @@ import { api } from "../services/api";
 import { Loading } from "../components/loading";
 
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { IoSearch } from "react-icons/io5";
 

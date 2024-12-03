@@ -3,12 +3,14 @@ import { Template } from "../templates/template";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as y from "yup"
 import ReactQuill from "react-quill";
+// @ts-ignore
 import "react-quill/dist/quill.snow.css";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { AxiosError } from "axios";
 

@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { Template } from "../templates/template";
 import { ToastContainer, toast } from 'react-toastify';
+// @ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import { api } from "../services/api";

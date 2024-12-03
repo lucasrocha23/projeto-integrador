@@ -5,6 +5,7 @@ import { Detalhes } from "./paginas/detalhes";
 import { ResultadoPesquisa } from "./paginas/pesquisa";
 import { NaoEncontrada } from "./paginas/nao-encontrada";
 import { QuemSomos } from "./paginas/quemSomos";
+// @ts-ignore
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Login } from "./paginas/login";
 import { Registro } from "./paginas/registro";
