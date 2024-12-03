@@ -134,7 +134,7 @@ export function Registro(){
                 <div>
                     <input  {...register("estado")} className="border-2 rounded-md w-full h-[40px] px-2" placeholder="Estado"/>
                     {errors.estado && 
-                        <span className="text-red-700">erro</span>
+                        <span className="text-red-700">{errors.estado.message}</span>
                     }
                 </div>
 
