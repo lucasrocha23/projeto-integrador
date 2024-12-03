@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CardProduto } from "../components/card-produto";
 import { api } from "../services/api";
-import { Usrtemplate } from "../templates/usr-template";
+import { Template } from "../templates/template";
 import { Loading } from "../components/loading";
 import { Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
@@ -63,7 +63,7 @@ export function ListaTodosProdutos(){
     },[])
 
     return(
-        <Usrtemplate>
+        <Template>
             <ToastContainer/>
             <h1>Lista de produtos</h1>
 
@@ -88,6 +88,6 @@ export function ListaTodosProdutos(){
                     <CardProduto id={item._id} nome={item.name} preco={item.price} img={item.url1} marca={item.manufacturer} key={item._id}/>
                 ))}
             </div>
-        </Usrtemplate>
+        </Template>
     )
 }

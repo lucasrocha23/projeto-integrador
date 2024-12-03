@@ -14,6 +14,8 @@ import { FormProduto } from "./paginas/from-produto";
 import { FaleConosco } from "./paginas/fale-conosco";
 import { ListaTodosProdutos } from "./paginas/todos-os-produtos";
 import { TesteLoading } from "./paginas/teste-loading";
+import { FormEditarProduto } from "./paginas/form-editar-produto";
+import { ResultadosCategoria } from "./paginas/resultados-categoria";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
     element: <Detalhes/>
   },
   {
+    path: '/categoria/:categoria',
+    element: <ResultadosCategoria/>
+  },
+  {
     path: '/pesquisa/:produto',
     element: <ResultadoPesquisa/>
   },
@@ -49,10 +55,6 @@ const router = createBrowserRouter([
     element: <Login/>
   },
   {
-    path: '/dashboard',
-    element: <Dashboard/>
-  },
-  {
     path: '/registrar',
     element: <Registro/>
   },
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: '/form-produto',
     element: <FormProduto/>
+  },
+  {
+    path: '/form-produto/:id',
+    element: <FormEditarProduto/>
   },
   {
     path: '/fale-conosco',

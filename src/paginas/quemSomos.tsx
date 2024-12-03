@@ -1,10 +1,10 @@
-import { Usrtemplate } from "../templates/usr-template";
 import missao from "../assets/missão.jpg"
 import historia from "../assets/história.jpg"
+import { Template } from "../templates/template"
 
 export function QuemSomos(){
     return(
-        <Usrtemplate>
+        <Template>
             <div className="flex flex-col gap-5">
                 <h1 className="text-center text-3xl font-bold">Sobre nós</h1>
                 <p className="text-center">Somos um marketplace para pessoas que querem vender seus produtos de forma fácil e rápida </p>
@@ -30,6 +30,6 @@ export function QuemSomos(){
                     
                 </div>
             </div>
-        </Usrtemplate>
+        </Template>
     )
 }

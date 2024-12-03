@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { CardProduto } from "../components/card-produto";
 import { api } from "../services/api";
-import { Usrtemplate } from "../templates/usr-template";
 import { Loading } from "../components/loading";
 import { Link } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Template } from "../templates/template";
 
 type Produto = {
     _id: string
@@ -48,7 +48,7 @@ export function ListaProdutosRecentes(){
     },[])
 
     return(
-        <Usrtemplate>
+        <Template>
             <ToastContainer/>
             <div className="flex justify-between items-center">
                 <h1>Lista de produtos</h1>
@@ -67,6 +67,6 @@ export function ListaProdutosRecentes(){
                     <CardProduto id={item._id} nome={item.name} preco={item.price} img={item.url1} marca={item.manufacturer} key={item._id}/>
                 ))}
             </div>
-        </Usrtemplate>
+        </Template>
     )
 }

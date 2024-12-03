@@ -1,6 +1,5 @@
 import { LuGamepad2 } from "react-icons/lu";
 import { CardProduto } from "../components/card-produto";
-import { Usrtemplate } from "../templates/usr-template";
 import { PiCarSimple, PiPants } from "react-icons/pi";
 import { VscTools } from "react-icons/vsc";
 import { IoFastFoodOutline, IoSearch } from "react-icons/io5";
@@ -10,7 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import banner1 from '../assets/banner1.jpg'
 import banner2 from '../assets/banner2.jpg'
 import banner3 from '../assets/banner3.jpg'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
@@ -18,6 +17,8 @@ import { Loading } from "../components/loading";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../hooks/useAuth";
+import { Template } from "../templates/template";
 
 const categItens = [
     {
@@ -32,7 +33,7 @@ const categItens = [
     },
     {
         id:2,
-        titulo: 'Veículos',
+        titulo: 'Veiculos',
         icone: <PiCarSimple/>
     },
     {
@@ -42,7 +43,7 @@ const categItens = [
     },
     {
         id:3,
-        titulo: 'Comidas',
+        titulo: 'Comida',
         icone: <IoFastFoodOutline/>
     },
     {
@@ -81,6 +82,8 @@ export function Home(){
 
     const [pesquisa,setPesquisa] = useState('')
 
+    const {token} = useAuth()
+    const navigate = useNavigate()
 
     async function getProdutosRecentes(){
         setLoadingItensRecentes(true)
@@ -112,7 +115,7 @@ export function Home(){
     },[])
 
     return(
-        <Usrtemplate>
+        <Template>
             <ToastContainer />
             
             <div  className="max-w-[80%] self-center" >
@@ -150,7 +153,7 @@ export function Home(){
                 <h2 className="text-white">Categorias</h2>
                 <div className="px-[5%] grid grid-cols-7 gap-5 mt-6" >
                     {categItens.map( (cat) => (
-                        <Link to={'/resultado'} key={cat.id}>
+                        <Link to={`/categoria/${cat.titulo}`} key={cat.id}>
                             <div  className="flex flex-col items-center">
                                 <div className="rounded-full bg-white flex items-center justify-center md:w-[70px] md:h-[70px] sm:w-[50px] sm:h-[50px]  text-2xl text-gray-900">
                                     {cat.icone}
@@ -171,6 +174,6 @@ export function Home(){
                 ))}
             </div>
             <Link to={'/todos-os-produtos'}> Ver todos os produtos</Link>
-        </Usrtemplate>
+        </Template>
     )
 }

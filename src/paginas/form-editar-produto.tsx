@@ -5,12 +5,13 @@ import * as y from "yup"
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AxiosError } from "axios";
+import { LoadingEditAnuncio } from "../components/loading-edit-anuncio";
 
 
 type AnuncioForm = {
@@ -22,12 +23,37 @@ type AnuncioForm = {
     img2: string,
 }
 
+type Produto = {
+    _id: string
+    name: string
+    manufacturer: string
+    category: string
+    price: number,
+    url1: string
+    url2: string
+    description: string
+    user: string
+    createdAt: string
+    updatedAt: string
+}
+
 interface ApiError {
     message: string; 
 }
 
-export function FormProduto(){
+export function FormEditarProduto(){
     const [descricao,setDescricao] = useState('')
+    const [loading,setLoading] = useState(false)
+
+    const [produto, setProduto] = useState({
+        preco: 0,
+        categoria: '',
+        descricao: '',
+        fabricante: '',
+        nomeProduto: '',
+        img1: '',
+        img2: ''
+    })
 
     const schemaValidacao = y.object().shape({
         nomeProduto: y.string().required("Campo obrigatório"),
@@ -41,33 +67,30 @@ export function FormProduto(){
     const {
         register,
         handleSubmit,
-        reset,
         formState: {errors}
     } = useForm<AnuncioForm>({resolver: yupResolver(schemaValidacao),
-        defaultValues: {
-            preco: 0,
-            categoria: '',
-            fabricante: '',
-            nomeProduto: '',
-            img1: '',
-            img2: ''
-        }
-    }
-)
+        defaultValues:produto,
+        values:produto
+    })
 
     const {token} = useAuth()
+    const {id} = useParams()
+
     const navigate = useNavigate()
 
     useEffect(() => {
         if(!token){
             navigate('/login')
         }
+
+        if(id){
+            getDetalhes()
+        }
     },[])
 
-
-    async function salvarAnuncio(dados: AnuncioForm){
+    async function editarAnuncio(dados: AnuncioForm){
         try {
-            const response = await api.post('/products',
+            const response = await api.put(`/products/${id}`,
                 {
                     name: dados.nomeProduto,
                     manufacturer: dados.fabricante,
@@ -80,26 +103,50 @@ export function FormProduto(){
                 {headers: {Authorization: token}}
             )
 
-            console.log(response.status);
-            
-            if (response.status === 201){
-                toast('Produto cadastrado com sucesso',{type: "success"})
-                reset()
-                setDescricao("")
+            if (response.status === 200){
+                toast('Produto editado',{type: "success"})
+                getDetalhes()
             }
         } catch (error) {
             const erro = error as AxiosError<ApiError>
 
-            toast(`Falha ao cadastrar produto. Erro: ${erro.response?.data.message? erro.response.data.message : erro }`, {type: 'error', autoClose:7000})
+            toast(`Falha ao editar produto. Erro: ${erro.response?.data.message? erro.response.data.message : erro }`, {type: 'error', autoClose:7000})
         }
+    }
+
+    async function getDetalhes(){
+        setLoading(true)
+        try {
+            const response = await api.get(`/products/${id}`)
+            const prod: Produto = response.data
+
+            setProduto({
+                preco: prod.price,
+                categoria: prod.category,
+                descricao: prod.description,
+                fabricante: prod.manufacturer,
+                nomeProduto: prod.name,
+                img1: prod.url1,
+                img2: prod.url2
+            })
+            setDescricao(prod.description)
+        } catch (error) {
+            const erro = error as AxiosError<ApiError>
+
+            toast(`Falha ao pegar detalhes do produto. Erro: ${erro.response?.data.message? erro.response.data.message : erro }`, {type: 'error', autoClose:7000})
+        }
+        setLoading(false)
     }
 
     return(
         <Template>
             <ToastContainer/>
             <div className="flex flex-col flex-1 items-center justify-center">
-                <h1 className="w-[800px] text-left mb-10 text-[30px]">Novo anúncio</h1>
-                <form onSubmit={handleSubmit(salvarAnuncio)} className="w-[800px] flex flex-col p-16 shadow-md rounded-xl gap-5">
+                <h1 className="w-[800px] text-left mb-10 text-[30px]">Editar anúncio</h1>
+                {loading? 
+                    <LoadingEditAnuncio/>
+                :
+                <form onSubmit={handleSubmit(editarAnuncio)} className="w-[800px] flex flex-col p-16 shadow-md rounded-xl gap-5">
                     <p>Preencha os campos abaixo:</p>
 
                     <div className="flex gap-5">
@@ -171,6 +218,7 @@ export function FormProduto(){
                         </Link>
                     </div>
                 </form>
+                }
             </div>
         </Template>
     )

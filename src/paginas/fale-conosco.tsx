@@ -1,4 +1,4 @@
-import { AdmTemplate } from "../templates/adm-template";
+import { Template } from "../templates/template";
 import * as y from "yup" 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ export function FaleConosco(){
     }
 
     return(
-        <AdmTemplate>
+        <Template>
             <div className="flex flex-col flex-1 items-center justify-center">
                 <form onSubmit={handleSubmit(enviarMsg)} className="flex flex-col p-16 shadow-md rounded-xl w-[500px] gap-5">
                 <h1 className="text-primary text-[30px] font-bold text-center">Unybay</h1>
@@ -61,6 +61,6 @@ export function FaleConosco(){
                 </form>
             </div>
             
-        </AdmTemplate>
+        </Template>
     )
 }
