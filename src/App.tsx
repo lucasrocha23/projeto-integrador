@@ -15,6 +15,10 @@ import { FaleConosco } from "./paginas/fale-conosco";
 import { ListaTodosProdutos } from "./paginas/todos-os-produtos";
 import { FormEditarProduto } from "./paginas/form-editar-produto";
 import { ResultadosCategoria } from "./paginas/resultados-categoria";
+import { Theme } from "@radix-ui/themes";
+// @ts-ignore
+import "@radix-ui/themes/styles.css";
+
 
 const router = createBrowserRouter([
   {
@@ -81,9 +85,11 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <div >
-      <RouterProvider router={router}/>
-    </div>
+    <Theme>
+      <div >
+        <RouterProvider router={router}/>
+      </div>
+    </Theme>
   )
 }
 
